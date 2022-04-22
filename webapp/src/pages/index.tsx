@@ -2,8 +2,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { VStack, Heading, Box } from "@chakra-ui/layout"
-import { Button } from '@chakra-ui/react'
-import { db } from '../utils/admin';
 import ConnectMetamask from 'components/ConnectMetamask'
 import ETHBalanceSWR from 'components/ETHBalanceSWR'
 import ReadERC721 from 'components/ReadERC721'
@@ -13,30 +11,7 @@ import ReadNFTMarket from 'components/ReadNFTMarket'
 import { app, database } from 'firebase.config';
 
 const Home: NextPage = () => {
-  function getAllTodos(request, response) {
-    database
-      .collection('todos')
-      .orderBy('createdAt', 'desc')
-      .get()
-      .then((data) => {
-        let todos = [];
-        data.forEach((doc) => {
-          todos.push({
-            todoId: doc.id,
-            title: doc.data().title,
-            body: doc.data().body,
-            createdAt: doc.data().createdAt,
-          });
-        });
-        return response.json(todos);
-      })
-      .catch((err) => {
-        console.error(err);
-        return response.status(500).json({ error: err.code });
-      });
-  };
-
-  // console.log(777, getAllTodos());
+  console.log("app", app, "database", database);
   return (
     <>
       <Head>
